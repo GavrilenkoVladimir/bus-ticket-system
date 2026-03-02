@@ -1,0 +1,90 @@
+[
+  {
+    "model": "station.bus",
+    "pk": 1,
+    "fields": {
+      "info": "Mercedes Sprinter",
+      "num_seats": 18
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 2,
+    "fields": {
+      "info": "Volkswagen Crafter",
+      "num_seats": 20
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 3,
+    "fields": {
+      "info": "Iveco Daily",
+      "num_seats": 16
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 4,
+    "fields": {
+      "info": "Ford Transit",
+      "num_seats": 17
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 5,
+    "fields": {
+      "info": "MAN TGE",
+      "num_seats": 19
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 6,
+    "fields": {
+      "info": "Peugeot Boxer",
+      "num_seats": 15
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 7,
+    "fields": {
+      "info": "Renault Master",
+      "num_seats": 18
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 8,
+    "fields": {
+      "info": "Citroën Jumper",
+      "num_seats": 16
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$600000$examplehash$examplehash",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "email": "admin@example.com"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+      "username": "dispatcher",
+      "password": "pbkdf2_sha256$600000$examplehash$examplehash",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "email": "dispatcher@example.com"
+    }
+  }
+]

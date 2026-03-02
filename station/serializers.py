@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from models import Bus
+from station.models import Bus
 
 
 class BusSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     info = serializers.CharField(max_length=255, required=False)
-    num_seats = serializers.IntegerField(read_only=True)
+    num_seats = serializers.IntegerField(required=True)
 
     def create(self, validated_data):
         return Bus.objects.create(**validated_data)

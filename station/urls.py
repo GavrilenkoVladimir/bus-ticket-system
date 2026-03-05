@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from station.views import (
     BusList,
@@ -23,6 +24,9 @@ bus_detail = BusViewSet.as_view({
     "delete": "destroy"
 })
 
+router = routers.DefaultRouter()
+router.register("buses", BusViewSet)
+
 urlpatterns = [
     path("FBV/buses/", bus_list, name="bus_list"),
     path("FBV/buses/<int:pk>", bus_detail, name="bus_detail"),
@@ -32,6 +36,7 @@ urlpatterns = [
     path("CBV/GMAPIV/buses/<int:pk>/", BusDetailGM.as_view(), name="bus_detail_g_apiview"),
     path("CBV/GV/buses/", BusListGV.as_view(), name="bus_list_g_view"),
     path("CBV/GV/buses/<int:pk>/", BusDetailGV.as_view(), name="bus_detail_g_view"),
-    path("CBV/GVS/buses/", bus_list, name="bus_list_g_view_set"),
-    path("CBV/GVS/buses/<int:pk>/", bus_detail, name="bus_detail_g_view_set"),
+    path("CBV/VS/buses/", bus_list, name="bus_list_view_set"),
+    path("CBV/VS/buses/<int:pk>/", bus_detail, name="bus_detail_view_set"),
+    path("CBV/VSR/", include(router.urls), name="bus_view_set_router"),
 ]

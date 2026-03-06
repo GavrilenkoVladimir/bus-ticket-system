@@ -19,6 +19,12 @@ Representing a serializer using a model Serializer.
 #         return instance
 
 
+class FacilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Facility
+        fields = ("id", "name",)
+
+
 class BusSerializer(serializers.ModelSerializer):
 
     is_small = serializers.ReadOnlyField()
@@ -27,6 +33,9 @@ class BusSerializer(serializers.ModelSerializer):
         model = Bus
         fields = ("id", "info", "num_seats", "is_small", "facility")
 
+
+class BusListSerializer(BusSerializer):
+    facility = FacilitySerializer(many=True)
 
 class TripSerializer(serializers.ModelSerializer):
 

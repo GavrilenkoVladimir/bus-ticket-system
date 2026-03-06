@@ -61,14 +61,10 @@ class Ticket(models.Model):
             })
 
     def save(
-            self,
-            force_insert=False,
-            force_update=False,
-            using=None,
-            update_fields=None,
+            self, *args, **kwargs
     ):
         self.full_clean()
-        return super(Ticket, self).save(force_insert, force_update, using, update_fields)
+        return super(Ticket, self).save(*args, **kwargs)
 
 
 class Order(models.Model):

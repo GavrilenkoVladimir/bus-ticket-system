@@ -21,42 +21,24 @@ Representing a serializer using a model Serializer.
 
 class BusSerializer(serializers.ModelSerializer):
 
-    is_small = serializers.BooleanField()
+    is_small = serializers.ReadOnlyField()
 
     class Meta:
         model = Bus
-        fields = "__all__"
-
-
-class TicketSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Ticket
-        fields = "__all__"
+        fields = ("id", "info", "num_seats", "is_small", "facility")
 
 
 class TripSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Trip
-        fields = "__all__"
+        fields = ("id", "source", "destination", "departure", "bus")
+
 
 class TripListSerializer(TripSerializer):
 
     bus = BusSerializer()
 
-class OrderSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Order
-        fields = "__all__"
-
-
-class FacilitySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Facility
-        fields = "__all__"
 
 
 

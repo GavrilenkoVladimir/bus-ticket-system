@@ -1,7 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from station.serializers import FacilitySerializer
 from station.views import (
     BusList,
     BusDetail,

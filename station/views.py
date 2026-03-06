@@ -13,7 +13,7 @@ from rest_framework.mixins import (
 
 from station.models import Bus, Trip, Facility
 from station.serializers import BusSerializer, TripSerializer, TripListSerializer, BusListSerializer, \
-    FacilitySerializer, BusRetrieveSerializer
+    FacilitySerializer, BusRetrieveSerializer, TripRetrieveSerializer
 
 '''
 '''
@@ -180,7 +180,7 @@ class TripViewSet(
 
     def get_queryset(self):
         queryset = self.queryset
-        if self.action == "list":
+        if self.action in ("list", "retrieve"):
             return queryset.select_related()
         return queryset
 
@@ -188,5 +188,7 @@ class TripViewSet(
     def get_serializer_class(self):
         if self.action == "list":
             return TripListSerializer
+        elif self.action == "retrieve":
+            return TripRetrieveSerializer
 
         return TripSerializer

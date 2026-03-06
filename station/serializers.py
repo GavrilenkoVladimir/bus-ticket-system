@@ -4,6 +4,8 @@ from station.models import Bus, Ticket, Trip, Order, Facility
 '''
 Representing a serializer using a model Serializer.
 '''
+
+
 # class BusSerializer(serializers.Serializer):
 #     id = serializers.IntegerField(read_only=True)
 #     info = serializers.CharField(max_length=255, required=False)
@@ -26,7 +28,6 @@ class FacilitySerializer(serializers.ModelSerializer):
 
 
 class BusSerializer(serializers.ModelSerializer):
-
     is_small = serializers.ReadOnlyField()
 
     class Meta:
@@ -36,27 +37,37 @@ class BusSerializer(serializers.ModelSerializer):
 
 class BusListSerializer(BusSerializer):
     facility = serializers.SlugRelatedField(
-       many=True,
-       read_only=True,
-       slug_field="name"
+        many=True,
+        read_only=True,
+        slug_field="name"
     )
 
 
 class BusRetrieveSerializer(BusSerializer):
     facility = FacilitySerializer(many=True)
 
-class TripSerializer(serializers.ModelSerializer):
 
+class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
         fields = ("id", "source", "destination", "departure", "bus")
 
 
-class TripListSerializer(TripSerializer):
+class TripListSerializer(serializers.ModelSerializer):
+    bus_info = serializers.CharField(source="bus.info", read_only=True)
+    bus_num_seats = serializers.IntegerField(source="bus.num_seats", read_only=True)
 
-    bus = BusSerializer()
+    class Meta:
+        model = Trip
+        fields = (
+            "id",
+            "source",
+            "destination",
+            "departure",
+            "bus_info",
+            "bus_num_seats"
+        )
 
 
-
-
-
+class TripRetrieveSerializer(TripSerializer):
+    bus = BusListSerializer(many=False, read_only=True)

@@ -1,0 +1,133 @@
+[
+  {
+    "model": "station.facility",
+    "pk": 1,
+    "fields": {
+      "name": "WiFi"
+    }
+  },
+  {
+    "model": "station.facility",
+    "pk": 2,
+    "fields": {
+      "name": "Air Conditioning"
+    }
+  },
+  {
+    "model": "station.facility",
+    "pk": 3,
+    "fields": {
+      "name": "USB Charging"
+    }
+  },
+
+  {
+    "model": "station.bus",
+    "pk": 1,
+    "fields": {
+      "info": "Mercedes Sprinter",
+      "num_seats": 20
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 2,
+    "fields": {
+      "info": "MAN Lion Coach",
+      "num_seats": 50
+    }
+  },
+  {
+    "model": "station.bus",
+    "pk": 3,
+    "fields": {
+      "info": "Neoplan Tourliner",
+      "num_seats": 45
+    }
+  },
+
+  {
+    "model": "station.trip",
+    "pk": 1,
+    "fields": {
+      "source": "Kyiv",
+      "destination": "Lviv",
+      "departure": "2026-03-10T08:00:00Z",
+      "bus": 2
+    }
+  },
+  {
+    "model": "station.trip",
+    "pk": 2,
+    "fields": {
+      "source": "Kyiv",
+      "destination": "Odessa",
+      "departure": "2026-03-11T09:30:00Z",
+      "bus": 3
+    }
+  },
+  {
+    "model": "station.trip",
+    "pk": 3,
+    "fields": {
+      "source": "Lviv",
+      "destination": "Kyiv",
+      "departure": "2026-03-12T07:00:00Z",
+      "bus": 1
+    }
+  },
+
+  {
+    "model": "station.order",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-03-01T10:00:00Z",
+      "user": 1
+    }
+  },
+  {
+    "model": "station.order",
+    "pk": 2,
+    "fields": {
+      "created_at": "2026-03-02T11:00:00Z",
+      "user": 1
+    }
+  },
+
+  {
+    "model": "station.ticket",
+    "pk": 1,
+    "fields": {
+      "seat": 5,
+      "trip": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "station.ticket",
+    "pk": 2,
+    "fields": {
+      "seat": 6,
+      "trip": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "station.ticket",
+    "pk": 3,
+    "fields": {
+      "seat": 1,
+      "trip": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "station.ticket",
+    "pk": 4,
+    "fields": {
+      "seat": 2,
+      "trip": 3,
+      "order": 2
+    }
+  }
+]

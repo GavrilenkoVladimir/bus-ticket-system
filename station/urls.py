@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 
+from station.serializers import FacilitySerializer
 from station.views import (
     BusList,
     BusDetail,
@@ -8,7 +9,7 @@ from station.views import (
     BusDetailGM,
     BusListGV,
     BusDetailGV,
-    BusViewSet
+    BusViewSet, TripViewSet
 )
 
 app_name = "station"
@@ -26,6 +27,7 @@ bus_detail = BusViewSet.as_view({
 
 router = routers.DefaultRouter()
 router.register("buses", BusViewSet)
+router.register("trips", TripViewSet)
 
 urlpatterns = [
     path("FBV/buses/", bus_list, name="bus_list"),
@@ -38,5 +40,5 @@ urlpatterns = [
     path("CBV/GV/buses/<int:pk>/", BusDetailGV.as_view(), name="bus_detail_g_view"),
     path("CBV/VS/buses/", bus_list, name="bus_list_view_set"),
     path("CBV/VS/buses/<int:pk>/", bus_detail, name="bus_detail_view_set"),
-    path("CBV/VSR/", include(router.urls), name="bus_view_set_router"),
+    path("", include(router.urls), name="bus_view_set_router"),
 ]

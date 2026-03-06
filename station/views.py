@@ -11,8 +11,8 @@ from rest_framework.mixins import (
     DestroyModelMixin
 )
 
-from station.models import Bus
-from station.serializers import BusSerializer
+from station.models import Bus, Trip
+from station.serializers import BusSerializer, TripSerializer, TripListSerializer
 
 '''
 '''
@@ -154,3 +154,14 @@ class BusViewSet(
 ):
     queryset = Bus.objects.all()
     serializer_class = BusSerializer
+
+class TripViewSet(
+    viewsets.ModelViewSet,
+):
+    queryset = Trip.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return TripListSerializer
+
+        return TripSerializer

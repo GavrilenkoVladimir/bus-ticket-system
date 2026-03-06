@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from station.models import Bus
+from station.models import Bus, Ticket, Trip, Order, Facility
 
 '''
 Representing a serializer using a model Serializer.
@@ -20,9 +20,42 @@ Representing a serializer using a model Serializer.
 
 
 class BusSerializer(serializers.ModelSerializer):
+
     is_small = serializers.BooleanField()
+
     class Meta:
         model = Bus
+        fields = "__all__"
+
+
+class TicketSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Ticket
+        fields = "__all__"
+
+
+class TripSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Trip
+        fields = "__all__"
+
+class TripListSerializer(TripSerializer):
+
+    bus = BusSerializer()
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = "__all__"
+
+
+class FacilitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Facility
         fields = "__all__"
 
 

@@ -160,6 +160,13 @@ class TripViewSet(
 ):
     queryset = Trip.objects.all()
 
+    def get_queryset(self):
+        queryset = self.queryset
+        if self.action == "list":
+            return queryset.select_related()
+        return queryset
+
+
     def get_serializer_class(self):
         if self.action == "list":
             return TripListSerializer

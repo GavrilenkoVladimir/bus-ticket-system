@@ -8,7 +8,7 @@ from station.views import (
     BusDetailGM,
     BusListGV,
     BusDetailGV,
-    BusViewSet, TripViewSet
+    BusViewSet, TripViewSet, FacilityViewSet
 )
 
 app_name = "station"
@@ -27,6 +27,7 @@ bus_detail = BusViewSet.as_view({
 router = routers.DefaultRouter()
 router.register("buses", BusViewSet)
 router.register("trips", TripViewSet)
+router.register("facilities", FacilityViewSet)
 
 urlpatterns = [
     path("FBV/buses/", bus_list, name="bus_list"),

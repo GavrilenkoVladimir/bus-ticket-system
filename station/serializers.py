@@ -35,6 +35,14 @@ class BusSerializer(serializers.ModelSerializer):
 
 
 class BusListSerializer(BusSerializer):
+    facility = serializers.SlugRelatedField(
+       many=True,
+       read_only=True,
+       slug_field="name"
+    )
+
+
+class BusRetrieveSerializer(BusSerializer):
     facility = FacilitySerializer(many=True)
 
 class TripSerializer(serializers.ModelSerializer):

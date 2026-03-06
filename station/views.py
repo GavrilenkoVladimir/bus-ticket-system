@@ -11,8 +11,9 @@ from rest_framework.mixins import (
     DestroyModelMixin
 )
 
-from station.models import Bus, Trip
-from station.serializers import BusSerializer, TripSerializer, TripListSerializer, BusListSerializer
+from station.models import Bus, Trip, Facility
+from station.serializers import BusSerializer, TripSerializer, TripListSerializer, BusListSerializer, \
+    FacilitySerializer, BusRetrieveSerializer
 
 '''
 '''
@@ -147,6 +148,11 @@ class BusDetailGV(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BusSerializer
 
 
+class FacilityViewSet(viewsets.ModelViewSet):
+    queryset = Facility.objects.all()
+    serializer_class = FacilitySerializer
+
+
 # Class base views with GenericViewSet class. You can get access this
 # features form url path before CBV/GVS/
 class BusViewSet(
@@ -157,11 +163,13 @@ class BusViewSet(
     def get_serializer_class(self):
         if self.action == "list":
             return BusListSerializer
+        elif self.action == "retrieve":
+            return BusRetrieveSerializer
         return BusSerializer
 
     def get_queryset(self):
         queryset = self.queryset
-        if self.action == "list":
+        if self.action in ("list", "retrieve"):
             return queryset.prefetch_related("facility")
         return queryset
 
